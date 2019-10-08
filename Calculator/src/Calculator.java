@@ -47,7 +47,7 @@ public class Calculator{
             if(i < 5){
                 buttonList.get(i).setPreferredSize(new Dimension(calcWidth/6, 30));
             }
-            else if((i >= 5) && (i < 29)){
+            else if((i >= 5) && (i < buttonNames.size())){
                 buttonList.get(i).setPreferredSize(new Dimension(calcWidth/6, 40));
             }
        
@@ -89,13 +89,14 @@ public class Calculator{
         buttonNames.add("3");
         buttonNames.add("+");
         buttonNames.add("AC");
-        buttonNames.add("0");
         buttonNames.add(".");
+        buttonNames.add("0");
+        buttonNames.add("x^2");
         buttonNames.add("=");
     }
     
     public static void buttonEvent(ActionEvent e, String buttonName){
-        if((buttonName.matches(".*\\d.*")) || buttonName.equals(".")){                           //If the button is a number or the decimal point...
+        if(((buttonName.matches(".*\\d.*")) || buttonName.equals(".")) && buttonName != "x^2"){                           //If the button is a number or the decimal point...
             calcScreen.setText(calcScreen.getText() + buttonName);
         }
         else if(buttonName.equals("Off")){
@@ -110,6 +111,10 @@ public class Calculator{
         }
         else if(buttonName.equals("SQRT")){
             double result = Math.sqrt(Double.parseDouble(calcScreen.getText()));
+            calcScreen.setText(Double.toString(result));
+        }
+        else if(buttonName.equals("x^2")){
+            double result = Math.pow(Double.parseDouble(calcScreen.getText()),2);
             calcScreen.setText(Double.toString(result));
         }
         else if(buttonName.equals("=")){
