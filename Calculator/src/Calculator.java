@@ -150,8 +150,5 @@ public class Calculator{
             screenContent.add(buttonName);
             calcScreen.setText("");
         }
-    }
-    
-    
-    
+    }    
 }
