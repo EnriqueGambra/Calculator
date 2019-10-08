@@ -16,6 +16,7 @@ public class Calculator{
     static JTextField calcScreen;
     static ArrayList<JButton> buttonList = new ArrayList<>();
     static ArrayList<String> buttonNames = new ArrayList<>();
+    static ArrayList<String> screenContent = new ArrayList<>();
     
     public static void main(String[] args) {
         createFrameProperties();
@@ -94,14 +95,28 @@ public class Calculator{
     }
     
     public static void buttonEvent(ActionEvent e, String buttonName){
-        if((buttonName.matches(".*\\d.*")) || buttonName.equals(".")){  //If the button is a number or the decimal point...
+        if((buttonName.matches(".*\\d.*")) || buttonName.equals(".")){                           //If the button is a number or the decimal point...
             calcScreen.setText(calcScreen.getText() + buttonName);
         }
         else if(buttonName.equals("Off")){
             System.exit(0);
         }
-        else{
+        else if(buttonName.equals("=")){
+            int firstNum = Integer.parseInt(screenContent.get(0));
+            int secondNum = Integer.parseInt(calcScreen.getText());
+            String operation = screenContent.get(1);
             
+            screenContent.clear();
+            if(operation == "+"){
+                int result = firstNum + secondNum;
+                calcScreen.setText(Integer.toString(result));
+            }
+        }
+        else{
+            String getContent = calcScreen.getText(); //Gets the input on the screen
+            screenContent.add(getContent); //Adds it to the arraylist
+            screenContent.add(buttonName);
+            calcScreen.setText("");
         }
     }
     
