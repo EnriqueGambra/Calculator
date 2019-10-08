@@ -94,11 +94,14 @@ public class Calculator{
     }
     
     public static void buttonEvent(ActionEvent e, String buttonName){
-        if(buttonName.equals("0")){
-            calcScreen.setText("0" + calcScreen.getText());
+        if((buttonName.matches(".*\\d.*")) || buttonName.equals(".")){  //If the button is a number or the decimal point...
+            calcScreen.setText(calcScreen.getText() + buttonName);
         }
-        else if(buttonName.equals("1")){
-            calcScreen.setText("1" + calcScreen.getText());
+        else if(buttonName.equals("Off")){
+            System.exit(0);
+        }
+        else{
+            
         }
     }
     
