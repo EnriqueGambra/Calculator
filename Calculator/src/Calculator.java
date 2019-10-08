@@ -109,15 +109,25 @@ public class Calculator{
             screenContent.clear();
         }
         else if(buttonName.equals("=")){
-            int firstNum = Integer.parseInt(screenContent.get(0));
-            int secondNum = Integer.parseInt(calcScreen.getText());
+            double firstNum = Double.parseDouble(screenContent.get(0));
+            double secondNum = Double.parseDouble(calcScreen.getText());
             String operation = screenContent.get(1);
+            double result = 0;
             
             screenContent.clear();
             if(operation == "+"){
-                int result = firstNum + secondNum;
-                calcScreen.setText(Integer.toString(result));
+                result = firstNum + secondNum;
             }
+            else if(operation == "*"){
+                result = firstNum * secondNum;
+            }
+            else if(operation == "-"){
+                result = firstNum - secondNum;
+            }
+            else if(operation == "/"){
+                result = (double) firstNum / secondNum;
+            }
+            calcScreen.setText(Double.toString(result));
         }
         else{ //All function operators meaning +, -, *, /, sqrt, mod, etc.
             String getContent = calcScreen.getText(); //Gets the input on the screen
