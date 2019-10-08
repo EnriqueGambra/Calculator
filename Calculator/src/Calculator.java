@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import java.awt.event.*;
 import java.awt.*;
 
-public class Calculator implements ActionListener{
+public class Calculator{
     static JFrame frame = new JFrame("Calculator");
     static final int calcWidth = 400;
     static final int calcHeight = 410;
@@ -92,16 +92,13 @@ public class Calculator implements ActionListener{
         buttonNames.add(".");
         buttonNames.add("=");
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) 
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     public static void buttonEvent(ActionEvent e, String buttonName){
         if(buttonName.equals("0")){
-            
+            calcScreen.setText("0" + calcScreen.getText());
+        }
+        else if(buttonName.equals("1")){
+            calcScreen.setText("1" + calcScreen.getText());
         }
     }
     
