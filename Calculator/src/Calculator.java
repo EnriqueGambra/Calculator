@@ -101,6 +101,13 @@ public class Calculator{
         else if(buttonName.equals("Off")){
             System.exit(0);
         }
+        else if(buttonName.equals("C")){
+            calcScreen.setText("");
+        }
+        else if(buttonName.equals("AC")){
+            calcScreen.setText("");
+            screenContent.clear();
+        }
         else if(buttonName.equals("=")){
             int firstNum = Integer.parseInt(screenContent.get(0));
             int secondNum = Integer.parseInt(calcScreen.getText());
@@ -112,7 +119,7 @@ public class Calculator{
                 calcScreen.setText(Integer.toString(result));
             }
         }
-        else{
+        else{ //All function operators meaning +, -, *, /, sqrt, mod, etc.
             String getContent = calcScreen.getText(); //Gets the input on the screen
             screenContent.add(getContent); //Adds it to the arraylist
             screenContent.add(buttonName);
