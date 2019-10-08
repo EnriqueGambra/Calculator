@@ -25,12 +25,15 @@ public class Calculator{
         frame.setVisible(true);
     }
     
+    //Creates JFrame properties
     public static void createFrameProperties(){
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(calcWidth, calcHeight);
+        frame.setResizable(false);
         frame.getContentPane().setLayout(new FlowLayout());
     }
     
+    //Creates the JTextField and adds it to the frame
     public static void addTextField(){
         calcScreen = new JTextField("");
         calcScreen.setPreferredSize(new Dimension(calcWidth - 30, 75));
@@ -38,31 +41,31 @@ public class Calculator{
         frame.getContentPane().add(calcScreen);
     }
     
+    //Adds buttons to the frame
     public static void addButtons(){
         createNames(); //First must create the names of the buttons
         
-        for(int i = 0; i < buttonNames.size(); i++){
+        for(int i = 0; i < buttonNames.size(); i++){ //Loops through the buttonNames arraylist
             int index = i;
-            buttonList.add(new JButton(buttonNames.get(i)));
+            buttonList.add(new JButton(buttonNames.get(i)));  //Adds a new JButton element to the list
             if(i < 5){
-                buttonList.get(i).setPreferredSize(new Dimension(calcWidth/6, 30));
+                buttonList.get(i).setPreferredSize(new Dimension(calcWidth/6, 30)); //Sets the dimensions for the buttons
             }
             else if((i >= 5) && (i < buttonNames.size())){
                 buttonList.get(i).setPreferredSize(new Dimension(calcWidth/6, 40));
             }
        
-            buttonList.get(i).setMinimumSize(new Dimension(100, 50));
-            buttonList.get(i).addActionListener(new ActionListener() {
+            buttonList.get(i).addActionListener(new ActionListener() {   //Adds actionListener to the buttons
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    buttonEvent(e, buttonNames.get(index));
+                    buttonEvent(e, buttonNames.get(index));   //Calls buttonEvent method if an event is requested
                 }
             });
             frame.getContentPane().add(buttonList.get(i));
         }
     }
     
-    public static void createNames(){
+    public static void createNames(){  //Hardcodes the names of the buttons we want on the calculator
         buttonNames.add("Off"); 
         buttonNames.add("SQRT"); 
         buttonNames.add("|>");
@@ -96,17 +99,17 @@ public class Calculator{
     }
     
     public static void buttonEvent(ActionEvent e, String buttonName){
-        if(((buttonName.matches(".*\\d.*")) || buttonName.equals(".")) && buttonName != "x^2"){                           //If the button is a number or the decimal point...
+        if(((buttonName.matches(".*\\d.*")) || buttonName.equals(".")) && buttonName != "x^2"){     //If the button is a number or the decimal point...
             calcScreen.setText(calcScreen.getText() + buttonName);
         }
         else if(buttonName.equals("Off")){
             System.exit(0);
         }
         else if(buttonName.equals("C")){
-            calcScreen.setText("");
+            calcScreen.setText("");     //Clear the text
         }
         else if(buttonName.equals("AC")){
-            calcScreen.setText("");
+            calcScreen.setText("");     //Clear text and arraylist
             screenContent.clear();
         }
         else if(buttonName.equals("SQRT")){
