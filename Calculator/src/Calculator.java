@@ -108,6 +108,10 @@ public class Calculator{
             calcScreen.setText("");
             screenContent.clear();
         }
+        else if(buttonName.equals("SQRT")){
+            double result = Math.sqrt(Double.parseDouble(calcScreen.getText()));
+            calcScreen.setText(Double.toString(result));
+        }
         else if(buttonName.equals("=")){
             double firstNum = Double.parseDouble(screenContent.get(0));
             double secondNum = Double.parseDouble(calcScreen.getText());
@@ -126,6 +130,9 @@ public class Calculator{
             }
             else if(operation == "/"){
                 result = (double) firstNum / secondNum;
+            }
+            else if(operation == "%"){
+                result = firstNum % secondNum;
             }
             calcScreen.setText(Double.toString(result));
         }
