@@ -6,8 +6,10 @@ import java.awt.FlowLayout;
 import java.util.ArrayList;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import java.awt.event.*;
+import java.awt.*;
 
-public class Calculator {
+public class Calculator implements ActionListener{
     static JFrame frame = new JFrame("Calculator");
     static final int calcWidth = 400;
     static final int calcHeight = 410;
@@ -36,22 +38,25 @@ public class Calculator {
     }
     
     public static void addButtons(){
-        createNames();
+        createNames(); //First must create the names of the buttons
         
         for(int i = 0; i < buttonNames.size(); i++){
+            int index = i;
             buttonList.add(new JButton(buttonNames.get(i)));
             if(i < 5){
                 buttonList.get(i).setPreferredSize(new Dimension(calcWidth/6, 30));
             }
-            else if((i >= 5) && (i < 24) || (i >= 25) && (i < 29)){
+            else if((i >= 5) && (i < 29)){
                 buttonList.get(i).setPreferredSize(new Dimension(calcWidth/6, 40));
             }
-            else if(i == 24){
-                buttonList.get(i).setPreferredSize(new Dimension(calcWidth/6, 40));
-            }
-        
-        
+       
             buttonList.get(i).setMinimumSize(new Dimension(100, 50));
+            buttonList.get(i).addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    buttonEvent(e, buttonNames.get(index));
+                }
+            });
             frame.getContentPane().add(buttonList.get(i));
         }
     }
@@ -87,5 +92,19 @@ public class Calculator {
         buttonNames.add(".");
         buttonNames.add("=");
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) 
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public static void buttonEvent(ActionEvent e, String buttonName){
+        if(buttonName.equals("0")){
+            
+        }
+    }
+    
+    
     
 }
